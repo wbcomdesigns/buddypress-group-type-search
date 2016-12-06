@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: Buddypress Groups Search
+Plugin Name: Buddypress Group Search
 Plugin URI: https://wbcomdesigns.com/contact/
 Description: This plugin allows site visitors to search for buddypress groups that includes searching based on buddypress group types in the site.
 Version: 1.0.0
-Author: wbcomdesigns
+Author: Wbcom Designs
 Author URI: http://wbcomdesigns.com
 License: GPLv2+
 Text Domain: bp-group-filter
