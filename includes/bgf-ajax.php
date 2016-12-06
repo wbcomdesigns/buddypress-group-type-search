@@ -2,28 +2,22 @@
 // Exit if accessed directly
 defined( 'ABSPATH' ) || exit;
 
-/**
- * Class to add custom scripts and styles
- */
+//Class to add custom scripts and styles
 if( !class_exists( 'BGFAjax' ) ) {
 	class BGFAjax{
 
-		/**
-		 * Constructor
-		 */
+		//Constructor
 		function __construct() {
 			//Search Groups
 			add_action( 'wp_ajax_bgf_search_groups', array( $this, 'bgf_search_groups' ) );
 			add_action( 'wp_ajax_nopriv_bgf_search_groups', array( $this, 'bgf_search_groups' ) );
 		}
 
-		/**
-		 * Actions performed to search groups
-		 */
+		//Actions performed to search groups
 		function bgf_search_groups() {
 			if( isset( $_POST['action'] ) && $_POST['action'] === 'bgf_search_groups' ) {
-				$search_txt = $_POST['search_txt'];
-				$group_type = $_POST['group_type'];
+				$search_txt = sanitize_text_field( $_POST['search_txt'] );
+				$group_type = sanitize_text_field( $_POST['group_type'] );
 				$result = array();
 				$groups = BP_Groups_Group::get(
 					array(

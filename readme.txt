@@ -1,5 +1,5 @@
 === Buddypress Groups Search ===
-Contributors: wbcomdesigns,vapvarun
+Contributors: wbcomdesigns, vapvarun
 Donate link: https://wbcomdesigns.com/contact/
 Tags: buddypress, groups
 Requires at least: 3.0.1
@@ -21,7 +21,7 @@ This plugin modifies the search template that is on the "/groups" page. It adds 
  
 = How can we search the groups by using this plugin? =
  
-Simply goto the groups directory from site front, you can see the search bar appearing above the groups listing. There you can see the "select" box that lists all the group types on the site. The attached screenshot will help you better understand the purpose. The screenshot is within the plugin folder.
+Simply goto the groups pafe from site front, you can see the search bar appearing above the groups listing. There you can see the "select" box that lists all the group types on the site. The attached screenshot will help you better understand the purpose. The screenshot is within the plugin folder.
  
 == Screenshots ==
 1. The screenshot shows the modified search template on buddypress groups page and corresponds to screenshot-1.(png|jpg|jpeg|gif).
@@ -33,4 +33,4 @@ Simply goto the groups directory from site front, you can see the search bar app
 
 == Upgrade Notice ==
 = 1.0.0 =
-This version is the initial version of the plugin providing basic search functionality.
+This version is the initial version of the plugin provoding basic search functionality.
