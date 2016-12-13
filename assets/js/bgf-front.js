@@ -26,6 +26,20 @@ jQuery(document).ready(function(){
 						var groups = response['groups'];
 						var groups_count = groups.length;
 						var grp_class = '';
+						var li_html = '';
+
+						jQuery( '#group-dir-count-top, #group-dir-count-bottom' ).html(  );
+
+						
+						html += '<div id="pag-top" class="pagination">';
+						html += '<div class="pag-count" id="group-dir-count-top">';
+						html += 'Viewing 1 - '+groups_count+' of '+groups_count+' groups';
+						html += '</div>';
+						html += '<div class="pagination-links" id="group-dir-pag-top">';
+						html += '</div>';
+						html += '</div>';
+
+
 						for( i in groups ) {
 							var id = groups[i]['id'];
 							var title = groups[i]['title'];
@@ -44,23 +58,35 @@ jQuery(document).ready(function(){
 							}
 
 							//Create Groups Loop HTML
-							html += '<li class="'+grp_class+' public is-admin is-member group-has-avatar">';
-								html += '<div class="item-avatar">';
-									html += '<a href="'+permalink+'">';
-										html += '<img src="'+thumbnail+'" class="avatar group-2-avatar avatar-50 photo" alt="Group logo of '+title+'" title="'+title+'" width="50" height="50">';
-									html += '</a>';
-								html += '</div>';
-								html += '<div class="item">';
-									html += '<div class="item-title"><a href="'+permalink+'">'+title+'</a></div>';
-									html += '<div class="item-meta"><span class="activity">'+last_active+'</span></div>';
-									html += '<div class="item-desc"><p>'+desc+'</p></div>';
-								html += '</div>';
-								html += '<div class="action"><div class="meta">'+status+' Group / '+member_str+'</div></div>';
-								html += '<div class="clear"></div>';
-							html += '</li>';
+							li_html += '<li class="'+grp_class+' public is-admin is-member group-has-avatar">';
+								li_html += '<div class="item-avatar">';
+									li_html += '<a href="'+permalink+'">';
+										li_html += '<img src="'+thumbnail+'" class="avatar group-2-avatar avatar-50 photo" alt="Group logo of '+title+'" title="'+title+'" width="50" height="50">';
+									li_html += '</a>';
+								li_html += '</div>';
+								li_html += '<div class="item">';
+									li_html += '<div class="item-title"><a href="'+permalink+'">'+title+'</a></div>';
+									li_html += '<div class="item-meta"><span class="activity">'+last_active+'</span></div>';
+									li_html += '<div class="item-desc"><p>'+desc+'</p></div>';
+								li_html += '</div>';
+								li_html += '<div class="action"><div class="meta">'+status+' Group / '+member_str+'</div></div>';
+								li_html += '<div class="clear"></div>';
+							li_html += '</li>';
 						}
-						jQuery( '#groups-list' ).html( html );
-						jQuery( '#group-dir-count-top, #group-dir-count-bottom' ).html( 'Viewing 1 - '+groups_count+' of '+groups_count+' groups' );
+
+						var ul_html = '<ul id="groups-list" class="item-list" aria-live="assertive" aria-atomic="true" aria-relevant="all">'+li_html+'</ul>';
+
+						html += ul_html;
+
+						html += '<div id="pag-bottom" class="pagination">';
+						html += '<div class="pag-count" id="group-dir-count-bottom">';
+						html += 'Viewing 1 - '+groups_count+' of '+groups_count+' groups';
+						html += '</div>';
+						html += '<div class="pagination-links" id="group-dir-pag-bottom">';
+						html += '</div>';
+						html += '</div>';
+
+						jQuery( '#groups-dir-list' ).html( html );
 					}
 					console.log( response );
 				},

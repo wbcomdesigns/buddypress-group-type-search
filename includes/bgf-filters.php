@@ -30,7 +30,12 @@ if( !class_exists( 'BGFFilters' ) ) {
 					<span class="ajax-loader"><i class="fa fa-spinner fa-spin"></i></span>
 				</div>
 				<select id="group-type">
-					<option value="">--Select--</option>
+					<option value="">
+						<?php _e( '--Select--', 'bp-group-filter' );?>
+					</option>
+					<option value="all">
+						<?php _e( 'All Types', 'bp-group-filter' );?>
+					</option>
 					<?php if( !empty( $group_types ) ) {?>
 						<?php foreach( $group_types as $index => $group_type ) {?>
 							<option value="<?php echo $index;?>">

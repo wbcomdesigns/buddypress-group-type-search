@@ -19,13 +19,22 @@ if( !class_exists( 'BGFAjax' ) ) {
 				$search_txt = sanitize_text_field( $_POST['search_txt'] );
 				$group_type = sanitize_text_field( $_POST['group_type'] );
 				$result = array();
-				$groups = BP_Groups_Group::get(
-					array(
-						'type' => 'alphabetical',
-						'per_page' => 999,
-						'group_type' => $group_type,
-					)
-				);
+				if( $group_type == 'all' ) {
+					$groups = BP_Groups_Group::get(
+						array(
+							'type' => 'alphabetical',
+							'per_page' => 999,
+						)
+					);
+				} else {
+					$groups = BP_Groups_Group::get(
+						array(
+							'type' => 'alphabetical',
+							'per_page' => 999,
+							'group_type' => $group_type,
+						)
+					);
+				}
 				
 				if( !empty( $groups['groups'] ) ) {
 					$grps = $groups['groups'];

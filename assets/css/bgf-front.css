@@ -32,10 +32,9 @@
   width: 93%;
 }
 .groups-not-found {
-    background-color: #FF9999;
-    border: 1px solid #FF3333;
-    padding: 15px;
-    text-align: center;
+  font-size: 32px;
+  color: #FF3333;
+  text-align: center;
 }
 .bgf-input-error {
     background-color: #FF9999;

@@ -1,6 +1,6 @@
-=== Buddypress Group Search ===
+=== BuddyPress Group Type Search ===
 Contributors: wbcomdesigns, vapvarun
-Donate link: https://wbcomdesigns.com/contact/
+Donate link: https://wbcomdesigns.com/donate/
 Tags: buddypress, groups
 Requires at least: 3.0.1
 Tested up to: 4.6.1
@@ -11,6 +11,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 == Description ==
 
 This plugin modifies the search template that is on the "/groups" page. It adds a feature of "group types" that are involved while searching groups. Now the users can search groups based on group types.
+
+To create Group types for BuddyPress, you can use [BP Create Group Type](https://wordpress.org/plugins/bp-create-group-type/)
+
+If you need additional help you can contact us for [Custom Development](https://wbcomdesigns.com/contact/).
 
 == Installation ==
 
