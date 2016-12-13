@@ -3,7 +3,7 @@
 Plugin Name: BuddyPress Group Type Search
 Plugin URI: https://wbcomdesigns.com/contact/
 Description: This plugin allows site visitors to search for BuddyPress groups that includes searching based on buddypress group types in the site.
-Version: 1.0.0
+Version: 1.0.1
 Author: Wbcom Designs
 Author URI: http://wbcomdesigns.com
 License: GPLv2+

@@ -38,3 +38,5 @@ Simply goto the groups directory from site front, you can see the search bar app
 == Upgrade Notice ==
 = 1.0.0 =
 This version is the initial version of the plugin with basic search functionality.
+= 1.0.1 =
+Search option fixes
