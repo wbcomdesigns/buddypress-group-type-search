@@ -45,7 +45,11 @@ if( !class_exists( 'BGFFilters' ) ) {
 					<?php }?>
 				</select>
 				<a  id="bgf-groups-search" href="javascript:void(0);">
-					<span><i class="fa fa-search"></i></span>
+					<?php if( get_option( 'template' ) == 'onesocial' ) {?>
+						<span><i class="bb-icon-search"></i></span>
+					<?php } else {?>
+						<span><i class="fa fa-search"></i></span>
+					<?php }?>
 				</a>
 			</div>
 			<?php

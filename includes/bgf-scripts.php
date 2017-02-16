@@ -19,6 +19,16 @@ if( !class_exists( 'BGFScriptsStyles' ) ) {
 			wp_enqueue_script('bgf-js-front',BGF_PLUGIN_URL.'assets/js/bgf-front.js', array('jquery'));
 			wp_enqueue_style('bgf-front-css', BGF_PLUGIN_URL.'assets/css/bgf-front.css');
 			wp_enqueue_style('bgf-font-awesome', BGF_PLUGIN_URL.'assets/css/font-awesome.min.css');
+
+			//One Social CSS
+			if( get_option( 'template' ) == 'onesocial' ) {
+				wp_enqueue_style('bgf-onesocial-css', BGF_PLUGIN_URL.'assets/css/bgf-onesocial.css');
+			}
+
+			//Boss CSS
+			if( get_option( 'template' ) == 'boss' ) {
+				wp_enqueue_style('bgf-boss-css', BGF_PLUGIN_URL.'assets/css/bgf-boss.css');
+			}
 		}
 	}
 	new BGFScriptsStyles();
