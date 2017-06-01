@@ -1,5 +1,4 @@
 <?php
-
 /*
   Plugin Name: BuddyPress Group Type Search
   Plugin URI: https://wbcomdesigns.com/contact/
@@ -15,9 +14,9 @@ if (!defined('ABSPATH'))
     exit; // Exit if accessed directly
 
 //Load plugin textdomain ( @since 1.0.0 )
-add_action('init', 'bgf_load_textdomain');
+add_action('init', 'bpgts_load_textdomain');
 
-function bgf_load_textdomain() {
+function bpgts_load_textdomain() {
     $domain = "bp-group-filter";
     $locale = apply_filters('plugin_locale', get_locale(), $domain);
     load_textdomain($domain, 'languages/' . $domain . '-' . $locale . '.mo');
@@ -25,29 +24,33 @@ function bgf_load_textdomain() {
 }
 
 //Constants used in the plugin
-define('BGF_PLUGIN_PATH', plugin_dir_path(__FILE__));
-define('BGF_PLUGIN_URL', plugin_dir_url(__FILE__));
-if (!defined('BP_ENABLE_MULTIBLOG')) {
-    define('BP_ENABLE_MULTIBLOG', false);
+define('BPGTS_PLUGIN_PATH', plugin_dir_path(__FILE__));
+define('BPGTS_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('BPGTS_TEXT_DOMAIN', plugin_dir_url(__FILE__));
+
+if (!defined('BPGTS_ENABLE_MULTIBLOG')) {
+    define('BPGTS_ENABLE_MULTIBLOG', false);
 }
 //Include needed files on init
-add_action('init', 'bgf_include_files');
-add_action('admin_init', 'bgf_include_files');
-
-function bgf_include_files() {
-    $include_files = array(
-        'includes/bgf-scripts.php',
-        'includes/bgf-filters.php',
-        'includes/bgf-ajax.php'
-    );
-    foreach ($include_files as $include_file)
-        include $include_file;
+function bpgts_run_bp_group_type_search() {
+  $include_files = array(
+    'includes/bpgts-scripts.php',
+    'includes/bpgts-filters.php',
+    'includes/bpgts-ajax.php',
+		'admin/class-bp-group-type-search-admin-setting.php',
+		'admin/class-bp-group-type-search-admin-setting-save.php'
+  );
+  foreach ($include_files as $include_file) {
+    include $include_file;
+  }
 }
 
-//Plugin Activation
-register_activation_hook(__FILE__, 'bgf_plugin_activation');
-
-function bgf_plugin_activation() {
+/**
+ * Check plugin requirement on activation
+ * this plugin requires buddypress and create group type to be installed and active
+ */
+add_action('plugins_loaded', 'bpgts_group_type_search_plugin_init');
+function bpgts_group_type_search_plugin_init() {
     if (is_multisite()) {
         global $wpdb;
         if (!is_plugin_active_for_network('buddypress/bp-loader.php') && !is_plugin_active('buddypress/bp-loader.php')) {
@@ -61,10 +64,37 @@ function bgf_plugin_activation() {
             wp_die(__('The <b>BuddyPress Group Type Search</b> plugin requires <b>BuddyPress Add Group Types</b> plugin to be installed and active. Return to <a href="' . admin_url('plugins.php') . '">Plugins</a>', 'bp-profile-filter'));
         }
     } else{
-        if (!in_array('buddypress/bp-loader.php', apply_filters('active_plugins', get_option('active_plugins'))) || !in_array('bp-create-group-type/bp-add-group-types.php', apply_filters('active_plugins', get_option('active_plugins')))) {
-            //Buddypress Plugin is inactive, hence deactivate this plugin
-            deactivate_plugins(plugin_basename(__FILE__));
-            wp_die(__('The <b>BuddyPress Group Type Search</b> plugin requires <b>Buddypress</b> and <b>BuddyPress Add Group Types</b> plugin to be installed and active. Return to <a href="' . admin_url('plugins.php') . '">Plugins</a>', 'bp-profile-filter'));
+      // If BuddyPress && Create Group Type plugin is NOT active
+      $cg_active = in_array('bp-create-group-type/bp-add-group-types.php', get_option('active_plugins'));
+      $bp_active = in_array('buddypress/bp-loader.php', get_option('active_plugins'));
+
+      if ( current_user_can('activate_plugins') && ( $cg_active !== true || $bp_active !== true ) ) {
+        add_action('admin_notices', 'bpgts_plugin_admin_notice');
+      } else {
+        if (!defined('BPGTS_PLUGIN_BASENAME')) {
+            define('BPGTS_PLUGIN_BASENAME', plugin_basename(__FILE__));
         }
+        bpgts_run_bp_group_type_search();
+        //Settings link for this plugin
+        add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'bpgts_bpcg_settings_link' );
+      }
     }
+}
+
+function bpgts_bpcg_settings_link( $links ) {
+	$settings_link = '<a href="' . admin_url("admin.php?page=bp-settings#bpgts_group_type_search_filter") . '">' . __('Settings', 'bp-activity-filter') . '</a>';
+	array_unshift($links, $settings_link); // before other links
+	return $links;
+}
+
+// Throw an Alert to tell the Admin why it didn't activate
+function bpgts_plugin_admin_notice() {
+    $bpcg_plugin = "BP Group Type Search";
+    $bp_plugin = "BuddyPress";
+    $cg_plugin = "BP Add Group Types";
+    echo '<div class="error"><p>'
+    . sprintf(__('%1$s requires %2$s and %3$s to function correctly. Please activate %2$s and %3$s before activating %1$s.', BPGTS_TEXT_DOMAIN), '<strong>' . esc_html($bpcg_plugin) . '</strong>', '<strong>' . esc_html($bp_plugin) . '</strong>', '<strong>' . esc_html($cg_plugin) . '</strong>')
+    . '</p></div>';
+    if (isset($_GET['activate']))
+        unset($_GET['activate']);
 }
