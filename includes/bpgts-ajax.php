@@ -146,7 +146,7 @@ if( !class_exists( 'BPGTSAjax' ) ) {
 						if( empty( $result['groups'] ) ) {
 							$result = array(
 								'found' => 'no',
-								'msg' => __( 'No Groups Matched Your Query!', 'bp-group-filter' ),
+								'msg' => __( 'No Groups Matched Your Query!', BPGTS_TEXT_DOMAIN ),
 								'groups' => array()
 							);
 						}
@@ -157,7 +157,7 @@ if( !class_exists( 'BPGTSAjax' ) ) {
 					 */
 					$result = array(
 						'found' => 'no',
-						'msg' => __( 'No Groups Found!', 'bp-group-filter' ),
+						'msg' => __( 'No Groups Found!', BPGTS_TEXT_DOMAIN ),
 						'groups' => array()
 					);
 				}				

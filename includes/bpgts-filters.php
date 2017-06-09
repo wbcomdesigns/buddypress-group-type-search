@@ -31,7 +31,7 @@ if( !class_exists( 'BPGTSFlters' ) ) {
 			<div class="bpgts-grp-search-form-template">
 				<div class="bpgts-input-error">
 					<span>
-						<?php echo __( 'Please provide some input to search groups!', 'bp-group-filter' );?>
+						<?php echo __( 'Please provide some input to search groups!', BPGTS_TEXT_DOMAIN );?>
 					</span>
 				</div>
 
@@ -39,10 +39,10 @@ if( !class_exists( 'BPGTSFlters' ) ) {
 					if($group_type_search || $both)
 					{ ?>
 				<label for="groups_search" class="bp-screen-reader-text">
-					<?php echo __( 'Search Groups...', 'bp-group-filter' );?>
+					<?php echo __( 'Search Groups...', BPGTS_TEXT_DOMAIN );?>
 				</label>
 				<div class="custom-wrap">
-					<input id="bpgts-groups-search-txt" placeholder="<?php echo __( 'Search Groups...', 'bp-group-filter' );?>" type="text">
+					<input id="bpgts-groups-search-txt" placeholder="<?php echo __( 'Search Groups...', BPGTS_TEXT_DOMAIN );?>" type="text">
 					<!--<span class="ajax-loader"><i class="fa fa-spinner fa-spin"></i></span>-->
 				</div>
 				<? } ?>
@@ -52,10 +52,10 @@ if( !class_exists( 'BPGTSFlters' ) ) {
 				{ ?>
 				<select id="bpgts-group-type">
 					<option value="">
-						<?php _e( '--Select--', 'bp-group-filter' );?>
+						<?php _e( '--Select--', BPGTS_TEXT_DOMAIN );?>
 					</option>
 					<option value="all">
-						<?php _e( 'All Types', 'bp-group-filter' );?>
+						<?php _e( 'All Types', BPGTS_TEXT_DOMAIN );?>
 					</option>
 					<?php if( !empty( $group_types ) ) { ?>
 						<?php foreach( $group_types as $index=> $group_type ) {?>

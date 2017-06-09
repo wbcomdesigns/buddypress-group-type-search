@@ -26,7 +26,7 @@ function bpgts_load_textdomain() {
 //Constants used in the plugin
 define('BPGTS_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('BPGTS_PLUGIN_URL', plugin_dir_url(__FILE__));
-define('BPGTS_TEXT_DOMAIN', plugin_dir_url(__FILE__));
+define('BPGTS_TEXT_DOMAIN', "bp-group-filter");
 
 if (!defined('BPGTS_ENABLE_MULTIBLOG')) {
     define('BPGTS_ENABLE_MULTIBLOG', false);
