@@ -1,5 +1,5 @@
 === BuddyPress Group Type Search ===
-Contributors: wbcomdesigns, vapvarun
+Contributors: wbcomdesigns
 Donate link: https://wbcomdesigns.com/donate/
 Tags: buddypress, groups
 Requires at least: 3.0.1
@@ -56,11 +56,13 @@ Both of these searches work individually as well as together. It means you can u
 * Updated release.
 
 == Upgrade Notice ==
-= 1.0.0 = This version is the initial version of the plugin with basic search functionality.
-= 1.0.1 =
-Search option fixes
-= 1.0.2 =
+= 1.0.0 = 
+* This version is the initial version of the plugin with basic search functionality.
 
-Plugin multisite support added.
-Settings added in wp-admin where user can set which type of search filter (text, select or both) will be shown on front-end for group searching also user can set the number of groups to shown in a single group page after search.
-On frontend now it can show the hidden groups also after search only if loggedin user has the privilege to see them.
+= 1.0.1 =
+* Search option fixes
+
+= 1.0.2 =
+* Plugin multisite support added.
+* Settings added in wp-admin where user can set which type of search filter (text, select or both) will be shown on front-end for group searching also user can set the number of groups to shown in a single group page after search.
+ * On frontend now it can show the hidden groups also after search only if loggedin user has the privilege to see them.
